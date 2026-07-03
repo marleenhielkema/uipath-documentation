@@ -1,0 +1,562 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:g="clr-namespace:GR_Generiek;assembly=GR.Generiek" xmlns:ga="clr-namespace:GR_e_Suite.Algemeen;assembly=GR.e-Suite" xmlns:gg="clr-namespace:GR_e_Suite.Generiek;assembly=GR.e-Suite" xmlns:gp="clr-namespace:GR_Centric.Persoon;assembly=GR.Centric" xmlns:gzg="clr-namespace:GR_e_Suite.Zaak.Geselecteerde_zaak;assembly=GR.e-Suite" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_DictConfig" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_StrReference" Type="InArgument(x:String)" />
+    <x:Property Name="in_StrZaaknummer" Type="InArgument(x:String)" />
+    <x:Property Name="in_StrFase" Type="InArgument(x:String)" />
+    <x:Property Name="out_IntStatus" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_BoolGerelateerdeCorrespondentie" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_StrBetrokkeneType" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>850.4,1006.4000000000001</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Process_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="100">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>GR_e_Suite.Algemeen</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Services.RuntimeAnalyze</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>GR_e_Suite.Generiek</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>GR_e_Suite.Zaak</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>GR_e_Suite.Zaak.Geselecteerde_zaak</x:String>
+      <x:String>GR_Centric.Persoon</x:String>
+      <x:String>System.Reflection.Context</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>Accessibility</x:String>
+      <x:String>UiPath.Activities.System.Collections</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>GR_Generiek</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>System.Collections.Concurrent</x:String>
+      <x:String>UiPath.UIAutomationNext.Triggers</x:String>
+      <x:String>UiPath.Platform.Triggers</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Triggers</x:String>
+      <x:String>UiPath.Platform.Triggers.Scope</x:String>
+      <x:String>GR_e_Suite.Zaak.Sidebar</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Semantic.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="100">
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>GR.e-Suite</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
+      <AssemblyReference>GR.Centric</AssemblyReference>
+      <AssemblyReference>System.Reflection.Context</AssemblyReference>
+      <AssemblyReference>Accessibility</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>GR.Generiek</AssemblyReference>
+      <AssemblyReference>System.Collections.Concurrent</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence sap2010:Annotation.AnnotationText="Voor elke zaak (ongeacht de onderzoeksfase) wordt gecheck of er betrokkenen zijn gekoppeld. Als dit het geval is wordt de zaak toegevoegd aan de AIO Performer Queue voor verdere verwerking. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1219,8049" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Name="vIntAantalBetrokkenen" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="vDictZaakgegevens" />
+      <Variable x:TypeArguments="sd:DataTable" Name="vDtProcesgegevens" />
+      <Variable x:TypeArguments="s:DateTime" Name="vDtmOnderzoekGeboortedatum" />
+      <Variable x:TypeArguments="s:Nullable(x:Int32)" Name="vIntStatus" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="vDictProcesgegevensGefilterd" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="522,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Start - Process&quot;]" />
+    <ga:NavigeerNaarZaak DisplayName="Navigeer naar zaak (e-Suite)" sap:VirtualizedContainerService.HintSize="522,123" sap2010:WorkflowViewState.IdRef="NavigeerNaarZaak_1" in_StrZaaknummer="[in_StrZaaknummer]" />
+    <gg:GetalUitTabblad out_IntTweedeGetal="{x:Null}" sap2010:Annotation.AnnotationText="Lees het getal uit het Betrokkenen tabblad uit om het aantal betrokkenen te bepalen" DisplayName="Getal(len) uit tabblad (e-Suite)" sap:VirtualizedContainerService.HintSize="522,324" sap2010:WorkflowViewState.IdRef="GetalUitTabblad_2" in_BoolTweedeGetal="False" in_StrTabblad="Betrokkenen" out_IntGetal="[vIntAantalBetrokkenen]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </gg:GetalUitTabblad>
+    <If sap2010:Annotation.AnnotationText="Als er één of meer betrokkenen gekoppeld zijn, wordt de zaak aan de Performer Queue toegevoegd" Condition="[vIntAantalBetrokkenen &gt; 0]" DisplayName="If - Betrokkenen aan zaak gekoppeld" sap:VirtualizedContainerService.HintSize="522,588" sap2010:WorkflowViewState.IdRef="If_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence DisplayName="Then - Zet zaak in queue" sap:VirtualizedContainerService.HintSize="450,302" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="AddTransactionItem - Invoke Workflow File (Components\Framework\AddTransactionItem.xaml)" sap:VirtualizedContainerService.HintSize="416,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Components\Framework\AddTransactionItem.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_DictConfig">[in_DictConfig]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_StrZaaknummer">[in_StrZaaknummer]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_StrFase">[in_StrFase]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_StrReference">[in_StrReference]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:Return sap:VirtualizedContainerService.HintSize="416,52" sap2010:WorkflowViewState.IdRef="Return_1" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <ui:CommentOut Body="{x:Null}" DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="450,95" sap2010:WorkflowViewState.IdRef="CommentOut_3" />
+      </If.Else>
+    </If>
+    <gzg:AlgemeneZaakgegevensUitlezen DisplayName="Algemene zaakgegevens uitlezen (e-Suite) (AlgemeneZaakgegevensUitlezen)" sap:VirtualizedContainerService.HintSize="522,123" sap2010:WorkflowViewState.IdRef="AlgemeneZaakgegevensUitlezen_2" out_DictAlgemeneZaakgegevens="[vDictZaakgegevens]" />
+    <If sap2010:Annotation.AnnotationText="Als de VA de zaak al behandeld heeft (bijvoorbeeld de dag ervoor) staat dit in de omschrijving van de zaakgegevens aangegeven met 'BSN niet gekoppeld'. Dan stopt het proces." Condition="[vDictZaakgegevens(&quot;Omschrijving&quot;).Contains(&quot;BSN niet gekoppeld&quot;)]" DisplayName="If - VA heeft al een keer geprobeerd te koppelen" sap:VirtualizedContainerService.HintSize="522,520" sap2010:WorkflowViewState.IdRef="If_6">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,295" sap2010:WorkflowViewState.IdRef="Sequence_30">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Trace" Message="[&quot;End - Process&quot;]" />
+          <ui:Return sap:VirtualizedContainerService.HintSize="416,52" sap2010:WorkflowViewState.IdRef="Return_4" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_31">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <If Condition="[vDictZaakgegevens(&quot;Kanaal&quot;) &lt;&gt; &quot;Internet&quot;]" DisplayName="If - Kanaal is niet Internet" sap:VirtualizedContainerService.HintSize="522,466" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,302" sap2010:WorkflowViewState.IdRef="Sequence_10">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Func_eSuite_BSN_niet_koppelen - Invoke Workflow File (Functions\eSuite\Func_eSuite_BSN_niet_koppelen.xaml)" sap:VirtualizedContainerService.HintSize="416,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Functions\eSuite\Func_eSuite_BSN_niet_gekoppeld.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_StrOudeOmschrijving">[vDictZaakgegevens("Omschrijving")]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_StrLogMessage" xml:space="preserve">["VA: Kanaal is niet Internet maar: " + vDictZaakgegevens("Kanaal")  + ". Handmatig koppelen."]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:Return sap:VirtualizedContainerService.HintSize="416,52" sap2010:WorkflowViewState.IdRef="Return_2" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <Sequence DisplayName="BSN checken in e-Suite en deze koppelen als aanwezig" sap:VirtualizedContainerService.HintSize="522,1093" sap2010:WorkflowViewState.IdRef="Sequence_28">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" sap2010:Annotation.AnnotationText="Hier worden de procesgegevens gefilterd op informatie over het onderzoeksadres en de persoon die onderzocht wordt." DisplayName="Func_eSuite_Onderzoeksgegevens_Ophalen - Invoke Workflow File (Functions\eSuite\Func_eSuite_Onderzoeksgegevens_Ophalen.xaml)" sap:VirtualizedContainerService.HintSize="452,243" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Functions\eSuite\Func_eSuite_Onderzoeksgegevens_Ophalen.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="out_DictOnderzoeksgegevens">[vDictProcesgegevensGefilterd]</OutArgument>
+          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtProcesgegevens">[vDtProcesgegevens]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:InvokeWorkflowFile>
+      <If sap2010:Annotation.AnnotationText="Hier controleren we of de BSN entry is in vDictProcesgegevensGefilterd een BSN bevat of leeg is. Als deze leeg is, is er geen BSN gevonden in e-Suite." Condition="[Not String.IsNullOrWhiteSpace(vDictProcesgegevensGefilterd(&quot;bsn&quot;).ToString())]" DisplayName="If - BSN in procesgegevens e-Suite" sap:VirtualizedContainerService.HintSize="452,758" sap2010:WorkflowViewState.IdRef="If_4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then - Koppel BSN aan zaak &amp; return" sap:VirtualizedContainerService.HintSize="450,302" sap2010:WorkflowViewState.IdRef="Sequence_15">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Func_eSuite_BSN_koppelen - Invoke Workflow File (Functions\eSuite\Func_eSuite_BSN_koppelen.xaml)" sap:VirtualizedContainerService.HintSize="416,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Functions\eSuite\Func_eSuite_BSN_koppelen.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_DictConfig">[in_DictConfig]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_StrOudeOmschrijving">[vDictZaakgegevens("Omschrijving")]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_StrLogMessage">VA: BSN in e-Suite gevonden, VA heeft BSN aan zaak gekoppeld.</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_StrGevondenBSN">[vDictProcesgegevensGefilterd("bsn")]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_StrZaaknummer">[in_StrZaaknummer]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_StrFase">[in_StrFase]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_StrReference">[in_StrReference]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <ui:Return sap:VirtualizedContainerService.HintSize="416,52" sap2010:WorkflowViewState.IdRef="Return_3" />
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence sap2010:Annotation.AnnotationText="Verder zoeken in Centric naar BSN" DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,265" sap2010:WorkflowViewState.IdRef="Sequence_16">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;VA: BSN komt niet voor in procesgegevens e-Suite, verder zoeken naar BSN in Centric&quot;]" />
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <If sap2010:Annotation.AnnotationText="Als er geen achternaam aanwezig is kan het onderzoek naar de BSN niet verder gaan." Condition="[String.IsNullOrWhiteSpace(vDictProcesgegevensGefilterd(&quot;achternaam&quot;).ToString)]" DisplayName="If - Geen achternaam in procesgegevens" sap:VirtualizedContainerService.HintSize="522,511" sap2010:WorkflowViewState.IdRef="If_7">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,302" sap2010:WorkflowViewState.IdRef="Sequence_33">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Func_eSuite_BSN_niet_gekoppeld - Invoke Workflow File (Functions\eSuite\Func_eSuite_BSN_niet_koppelen.xaml)" sap:VirtualizedContainerService.HintSize="416,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Functions\eSuite\Func_eSuite_BSN_niet_gekoppeld.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_StrOudeOmschrijving">[vDictZaakgegevens("Omschrijving")]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_StrLogMessage">VA: Geen achternaam aanwezig van te onderzoeken persoon in procesgegevens e-Suite.</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:Return sap:VirtualizedContainerService.HintSize="416,52" sap2010:WorkflowViewState.IdRef="Return_5" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_34">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <Sequence sap2010:Annotation.AnnotationText="Persooon zoeken in Centric o.b.v. adresgegevens, achternaam en geboortedatum uit e-Suite, vervolgens wordt er aan de hand van het aantal resultaten in Centric bepaald wat er gedaan wordt.&#xD;&#xA;- Als er één resultaat is wordt het BSN opgeslagen en gekoppeld aan de zaak. &#xD;&#xA;- Wanneer er meerdere resultaten zijn worden deze gefilterd op geboortedatum en voorletters, als er dan één resultaat is wordt deze gekoppeld.&#xD;&#xA;- Wanneer er geen resultaten zijn eindigt het proces." DisplayName="Persoon opzoeken in Centric en BSN koppelen als gevonden" sap:VirtualizedContainerService.HintSize="522,3906" sap2010:WorkflowViewState.IdRef="Sequence_29">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="vDictPersoonsgegevensCentric" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <g:DatumParsen out_BoolParsingSuccesvol="{x:Null}" sap2010:Annotation.AnnotationText="Wat gebeurt er nu hier als hij leeg is? Kan dit anders?" DisplayName="Geboortedatum parsen (Generiek)" sap:VirtualizedContainerService.HintSize="488,293" sap2010:WorkflowViewState.IdRef="DatumParsen_1" in_ArrStrDatumFormats="[New String(){&quot;dd-MM-yyyy&quot;}]" in_BoolDatumInputVereist="[True]" in_BoolThrowException="True" in_CultureInfo="[System.Globalization.CultureInfo.InvariantCulture]" in_DateTimeStyles="[System.Globalization.DateTimeStyles.None]" in_StrDatum="[vDictProcesgegevensGefilterd(&quot;geboortedatum&quot;) 'vStrOnderzoekGeboortedatum]" out_DateTimeResultaat="[vDtmOnderzoekGeboortedatum]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </g:DatumParsen>
+      <gp:ZoekschermPersoonOpenen DisplayName="Zoekscherm persoon openen (Centric BZ)" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="ZoekschermPersoonOpenen_1" />
+      <gp:PersoonZoeken in_StrANummer="{x:Null}" in_StrBSN="{x:Null}" in_StrBuitenlandsPersoonsnummer="{x:Null}" in_StrDatumAdresBuitenland="{x:Null}" in_StrGeboortedatum="{x:Null}" in_StrGeboortedatumTM="{x:Null}" in_StrGeboorteland="{x:Null}" in_StrGeboorteplaats="{x:Null}" in_StrGemeenteVanInschrijving="{x:Null}" in_StrGeslacht="{x:Null}" in_StrNationaliteit="{x:Null}" in_StrStraatnaam="{x:Null}" in_StrVoornamen="{x:Null}" in_StrVoorvoegsels="{x:Null}" out_StrZoekTypeResultaat="{x:Null}" sap2010:Annotation.AnnotationText="&quot;Actueel&quot; zoekopdracht omdat het om een Rotterdams adres gaat. " DisplayName="Persoon zoeken (Centric BZ)" sap:VirtualizedContainerService.HintSize="488,272" sap2010:WorkflowViewState.IdRef="PersoonZoeken_3" in_StrGeboortedatumPlus="[vDtmOnderzoekGeboortedatum.ToString(&quot;ddMMyyyy&quot;)]" in_StrGeslachtsnaam="[vDictProcesgegevensGefilterd(&quot;achternaam&quot;)]" in_StrHuisletter="[vDictProcesgegevensGefilterd(&quot;huisletter&quot;)]" in_StrHuisnr="[vDictProcesgegevensGefilterd(&quot;huisnummer&quot;)]" in_StrPopupNaam="*" in_StrPostcode="[vDictProcesgegevensGefilterd(&quot;postcode&quot;)]" in_StrToevoeging="[vDictProcesgegevensGefilterd(&quot;huisnummertoevoeging&quot;)]" in_StrWoonplaats="[vDictProcesgegevensGefilterd(&quot;woonplaats&quot;)]" in_StrZoekType="Actueel" out_IntStatus="[vIntStatus]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </gp:PersoonZoeken>
+      <ui:IfElseIfV2 sap2010:Annotation.AnnotationText="O.b.v. het aantal zoekresultaten in Centric wordt bepaald wat er gedaan wordt. " Condition="[CBool(vIntStatus = 1)]" DisplayName="Else If - Aantal zoek resultaten in Centric" sap:VirtualizedContainerService.HintSize="488,3066" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
+        <ui:IfElseIfV2.Else>
+          <Sequence DisplayName="Else - Foutmelding bij zoeken in Centric" sap:VirtualizedContainerService.HintSize="486,354" sap2010:WorkflowViewState.IdRef="Sequence_27">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <gzg:ZaakgegevensBewerken in_BoolVertrouwelijkBehandelen="{x:Null}" in_StrFataleDatum="{x:Null}" in_StrKanaal="{x:Null}" in_StrRedenStarten="{x:Null}" in_StrStartDatum="{x:Null}" in_StrStatus="{x:Null}" in_StrStreefDatum="{x:Null}" DisplayName="Zaakgegevens bewerken (e-Suite)" sap:VirtualizedContainerService.HintSize="452,127" sap2010:WorkflowViewState.IdRef="ZaakgegevensBewerken_6" in_StrOmschrijving="[&quot;BSN niet gekoppeld | &quot; + vDictZaakgegevens(&quot;Omschrijving&quot;)]" in_StrRedenWijzigen="VA heeft BSN niet gekoppeld." />
+            <Throw sap2010:Annotation.AnnotationText="Als dit niet nodig is kunnen we dit er ook nog uit halen samen met de error hierboven." DisplayName="Throw - AE" Exception="[New ApplicationException (&quot;VA: Geen BSN aanwezig in e-Suite en zoeken in Centric mislukt.&quot;)]" sap:VirtualizedContainerService.HintSize="452,163" sap2010:WorkflowViewState.IdRef="Throw_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Throw>
+          </Sequence>
+        </ui:IfElseIfV2.Else>
+        <ui:IfElseIfV2.ElseIfs>
+          <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+            <ui:IfElseIfBlock BlockType="ElseIf" Condition="[CBool(vIntStatus = 0)]" DisplayName="If else if block" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_1">
+              <ui:IfElseIfBlock.Then>
+                <Sequence DisplayName="Body - Eindig proces" sap:VirtualizedContainerService.HintSize="486,363" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <gp:PersoonSchermAfsluiten DisplayName="Persoon scherm afsluiten (Centric BZ)" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="PersoonSchermAfsluiten_3" />
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Func_eSuite_BSN_niet_gekoppeld - Invoke Workflow File (Functions\eSuite\Func_eSuite_BSN_niet_koppelen.xaml)" sap:VirtualizedContainerService.HintSize="452,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Functions\eSuite\Func_eSuite_BSN_niet_gekoppeld.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_StrOudeOmschrijving">[vDictZaakgegevens("Omschrijving")]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_StrLogMessage">VA: Geen BSN aanwezig in e-Suite en er is geen persoon gevonden in BRP o.b.v. achternaam, geboortedatum en adresgegevens. Handmatig koppelen.</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                  <ui:Return sap:VirtualizedContainerService.HintSize="452,52" sap2010:WorkflowViewState.IdRef="Return_6" />
+                </Sequence>
+              </ui:IfElseIfBlock.Then>
+            </ui:IfElseIfBlock>
+            <ui:IfElseIfBlock BlockType="ElseIf" Condition="[CBool(vIntStatus &gt; 1)]" DisplayName="If else if block" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_2">
+              <ui:IfElseIfBlock.Then>
+                <Sequence sap2010:Annotation.AnnotationText="Als er meerdere resultaten zijn gevonden in Centric, worden deze gefilterd op geboortedatum en voorletters. Als er één resultaat uit komt wordt deze gekoppeld, en wanneer er dan nog steeds meerdere resultaten zijn stopt het proces." DisplayName="Body - Filter Centric resultaten" sap:VirtualizedContainerService.HintSize="486,1554" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="sd:DataTable" Name="vDtGevondenpersonen" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <gp:GevondenPersonenOphalen DisplayName="Gevonden personen ophalen (Centric BZ)" sap:VirtualizedContainerService.HintSize="452,127" sap2010:WorkflowViewState.IdRef="GevondenPersonenOphalen_1" out_DtGevondenPersonen="[vDtGevondenpersonen]" />
+                  <gp:PersoonSchermAfsluiten DisplayName="Persoon scherm afsluiten (Centric BZ)" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="PersoonSchermAfsluiten_4" />
+                  <ui:FilterDataTable sap2010:Annotation.AnnotationText="Klopt dit met de voorletters? Trimmen?&#xD;&#xA;Wat als geboortedatum leeg is? Moet dit ipv = met een contains?" DataTable="[vDtGevondenpersonen]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="452,260" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[vDtGevondenpersonen]" SelectColumnsMode="Remove">
+                    <ui:FilterDataTable.Filters>
+                      <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                        <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                          <ui:FilterOperationArgument.Column>
+                            <InArgument x:TypeArguments="x:String">["Geboortedatum"]</InArgument>
+                          </ui:FilterOperationArgument.Column>
+                          <ui:FilterOperationArgument.Operand>
+                            <InArgument x:TypeArguments="x:String">[vDictProcesgegevensGefilterd("geboortedatum")]</InArgument>
+                          </ui:FilterOperationArgument.Operand>
+                        </ui:FilterOperationArgument>
+                        <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
+                          <ui:FilterOperationArgument.Column>
+                            <InArgument x:TypeArguments="x:String">["Naam"]</InArgument>
+                          </ui:FilterOperationArgument.Column>
+                          <ui:FilterOperationArgument.Operand>
+                            <InArgument x:TypeArguments="x:String">[vDictProcesgegevensGefilterd("voorletters")]</InArgument>
+                          </ui:FilterOperationArgument.Operand>
+                        </ui:FilterOperationArgument>
+                      </scg:List>
+                    </ui:FilterDataTable.Filters>
+                    <ui:FilterDataTable.SelectColumns>
+                      <scg:List x:TypeArguments="InArgument" Capacity="4">
+                        <x:Null />
+                      </scg:List>
+                    </ui:FilterDataTable.SelectColumns>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:FilterDataTable>
+                  <If Condition="[vDtGevondenpersonen.Rows.Count  = 1]" DisplayName="If - Één persoon gevonden na filteren centric resultaten" sap:VirtualizedContainerService.HintSize="452,727" sap2010:WorkflowViewState.IdRef="If_8">
+                    <If.Then>
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,490" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <gp:PersoonsgegevensOphalen out_DtBrondocumenten="{x:Null}" out_DtReisdocumenten="{x:Null}" out_DtVerblijfplaatsen="{x:Null}" DisplayName="Persoonsgegevens ophalen (Centric BZ)" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="PersoonsgegevensOphalen_4" in_BoolBrondocumenten="False" in_BoolPersoonsgegevens="True" in_BoolReisdocumenten="False" in_BoolVerblijfplaatsen="False" out_DictPersoonsgegevens="[vDictPersoonsgegevensCentric]" />
+                        <gp:PersoonSchermAfsluiten DisplayName="Persoon scherm afsluiten (Centric BZ)" sap:VirtualizedContainerService.HintSize="416,61" sap2010:WorkflowViewState.IdRef="PersoonSchermAfsluiten_5" />
+                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Func_eSuite_BSN_koppelen - Invoke Workflow File (Functions\eSuite\Func_eSuite_BSN_koppelen.xaml)" sap:VirtualizedContainerService.HintSize="416,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="Functions\eSuite\Func_eSuite_BSN_koppelen.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_DictConfig">[in_DictConfig]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_StrOudeOmschrijving">[vDictZaakgegevens("Omschrijving")]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_StrLogMessage">VA: BSN in Centric gevonden, VA koppelt BSN aan Zaak.</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_StrGevondenBSN">[vDictPersoonsgegevensCentric("BSN")]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_StrZaaknummer">[in_StrZaaknummer]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_StrFase">[in_StrFase]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_StrReference">[in_StrReference]</InArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                        </ui:InvokeWorkflowFile>
+                        <ui:Return sap:VirtualizedContainerService.HintSize="416,52" sap2010:WorkflowViewState.IdRef="Return_9" />
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Func_eSuite_BSN_niet_gekoppeld - Invoke Workflow File (Functions\eSuite\Func_eSuite_BSN_niet_koppelen.xaml)" sap:VirtualizedContainerService.HintSize="452,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Functions\eSuite\Func_eSuite_BSN_niet_gekoppeld.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_StrOudeOmschrijving">[vDictZaakgegevens("Omschrijving")]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_StrLogMessage">VA: Geen BSN gevonden in e-Suite en meerdere resultaten Centric o.b.v. achternaam, geboortedatum en adresgegevens. Handmatig koppelen.</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                  <ui:Return sap:VirtualizedContainerService.HintSize="452,52" sap2010:WorkflowViewState.IdRef="Return_7" />
+                </Sequence>
+              </ui:IfElseIfBlock.Then>
+            </ui:IfElseIfBlock>
+          </sc:BindingList>
+        </ui:IfElseIfV2.ElseIfs>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:IfElseIfV2.Then>
+          <Sequence DisplayName="Then - BSN koppelen" sap:VirtualizedContainerService.HintSize="486,490" sap2010:WorkflowViewState.IdRef="Sequence_25">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <gp:PersoonsgegevensOphalen out_DtBrondocumenten="{x:Null}" out_DtReisdocumenten="{x:Null}" out_DtVerblijfplaatsen="{x:Null}" DisplayName="Persoonsgegevens ophalen (Centric BZ)" sap:VirtualizedContainerService.HintSize="452,127" sap2010:WorkflowViewState.IdRef="PersoonsgegevensOphalen_3" in_BoolBrondocumenten="False" in_BoolPersoonsgegevens="True" in_BoolReisdocumenten="False" in_BoolVerblijfplaatsen="False" out_DictPersoonsgegevens="[vDictPersoonsgegevensCentric]" />
+            <gp:PersoonSchermAfsluiten DisplayName="Persoon scherm afsluiten (Centric BZ)" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="PersoonSchermAfsluiten_2" />
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Func_eSuite_BSN_koppelen - Invoke Workflow File (Functions\eSuite\Func_eSuite_BSN_koppelen.xaml)" sap:VirtualizedContainerService.HintSize="452,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Functions\eSuite\Func_eSuite_BSN_koppelen.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_DictConfig">[in_DictConfig]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_StrOudeOmschrijving">[vDictZaakgegevens("Omschrijving")]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_StrLogMessage">VA: BSN in Centric gevonden, VA koppelt BSN aan Zaak.</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_StrGevondenBSN">[vDictPersoonsgegevensCentric("BSN")]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_StrZaaknummer">[in_StrZaaknummer]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_StrFase">[in_StrFase]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_StrReference">[in_StrReference]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <ui:Return sap:VirtualizedContainerService.HintSize="452,52" sap2010:WorkflowViewState.IdRef="Return_8" />
+          </Sequence>
+        </ui:IfElseIfV2.Then>
+      </ui:IfElseIfV2>
+    </Sequence>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="522,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[&quot;End - Process&quot;]" />
+  </Sequence>
+</Activity>
